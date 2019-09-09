@@ -1,0 +1,19 @@
+<template name="ticketCreate">
+	<div class="ticket-create">
+		<form class="edit-form" autocomplete="off">
+			{{#with ticket}}
+			<div class="rc-input">
+				<label class="rc-input__label">
+					<div class="rc-input__title">{{_ "Subject"}}</div>
+					<div class="rc-input__wrapper">
+						<input class="rc-input__element" type="text" name="subject" autocomplete="off" value="{{subject}}" required>
+					</div>
+				</label>
+			</div>
+			{{/with}}
+			<div class="rc-user-info__flex rc-user-info__row">
+				<button class='rc-button rc-button--primary save'><span>{{_ "Create"}}</span></button>
+			</div>
+		</form>
+	</div>
+</template>

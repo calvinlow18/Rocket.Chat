@@ -160,6 +160,14 @@ AccountBox.addRoute({
 	pageTemplate: 'livechatIntegrationFacebook',
 }, livechatManagerRoutes);
 
+// AccountBox.addRoute({
+// 	name: 'livechat-ticket-zoho-desk',
+// 	path: '/zoho-desk',
+// 	sideNav: 'livechatFlex',
+// 	i18nPageTitle: 'Zoho Desk',
+// 	pageTemplate: 'livechatTicketIntegrationZohoDesk',
+// }, livechatManagerRoutes);
+
 AccountBox.addRoute({
 	name: 'livechat-queue',
 	path: '/livechat-queue',

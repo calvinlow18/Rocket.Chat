@@ -1,0 +1,21 @@
+<template name="ticketList">
+	<div class="ticket-list">
+		{{#each tickets}}
+		<a href="{{webUrl}}" target="_blank">
+			<div class="lc-ticket">
+				{{#if ticketingSystem}}
+				<div class="md-chip md-chip-clickable" style="background-color: {{backgroundColor}}; color: #FFFFFF">
+					{{ticketingSystem}}
+				</div>
+				{{/if}}
+				<div>
+					ID: {{ _id }}
+				</div>
+				<div>
+					Subject: {{ subject }}
+				</div>
+			</div>
+		</a>
+		{{/each}}
+	</div>
+</template>

@@ -17,6 +17,7 @@ import { callbacks } from '../../../callbacks';
 import {
 	Users,
 	Rooms,
+	Tickets,
 	Messages,
 	Subscriptions,
 	Settings,
@@ -46,8 +47,8 @@ export const Livechat = {
 		if (settings.get('Livechat_Routing_Method') === 'External') {
 			for (let i = 0; i < 10; i++) {
 				try {
-					const queryString = department ? `?departmentId=${ department }` : '';
-					const result = HTTP.call('GET', `${ settings.get('Livechat_External_Queue_URL') }${ queryString }`, {
+					const queryString = department ? `?departmentId=${department}` : '';
+					const result = HTTP.call('GET', `${settings.get('Livechat_External_Queue_URL')}${queryString}`, {
 						headers: {
 							'User-Agent': 'RocketChat Server',
 							Accept: 'application/json',
@@ -347,6 +348,22 @@ export const Livechat = {
 		return true;
 	},
 
+	createTicket({ roomId, ticketSubject, ticketContent, ticketingSystem, webUrl }) {
+		check(roomId, String);
+		check(ticketSubject, String);
+
+		const ticketData = {
+			rid: roomId,
+			subject: ticketSubject,
+			content: ticketContent,
+			ticketingSystem: ticketingSystem,
+			webUrl: webUrl,
+			t: 'l'
+		};
+
+		return Tickets.insert(ticketData);
+	},
+
 	setCustomFields({ token, key, value, overwrite } = {}) {
 		check(token, String);
 		check(key, String);
@@ -456,7 +473,7 @@ export const Livechat = {
 				extraData._hidden = true;
 			}
 
-			return Messages.createNavigationHistoryWithRoomIdMessageAndUser(roomId, `${ pageTitle } - ${ pageUrl }`, user, extraData);
+			return Messages.createNavigationHistoryWithRoomIdMessageAndUser(roomId, `${pageTitle} - ${pageUrl}`, user, extraData);
 		}
 	},
 
@@ -601,7 +618,7 @@ export const Livechat = {
 			}
 			return HTTP.post(settings.get('Livechat_webhookUrl'), options);
 		} catch (e) {
-			Livechat.logger.webhook.error(`Response error on ${ trying } try ->`, e);
+			Livechat.logger.webhook.error(`Response error on ${trying} try ->`, e);
 			// try 10 times after 10 seconds each
 			if (trying < 10) {
 				Livechat.logger.webhook.warn('Will try again in 10 seconds ...');
@@ -637,8 +654,8 @@ export const Livechat = {
 				phone: null,
 				department: visitor.department,
 				ip: visitor.ip,
-				os: ua.getOS().name && `${ ua.getOS().name } ${ ua.getOS().version }`,
-				browser: ua.getBrowser().name && `${ ua.getBrowser().name } ${ ua.getBrowser().version }`,
+				os: ua.getOS().name && `${ua.getOS().name} ${ua.getOS().version}`,
+				browser: ua.getBrowser().name && `${ua.getBrowser().name} ${ua.getBrowser().version}`,
 				customFields: visitor.livechatData,
 			},
 		};
@@ -849,13 +866,13 @@ export const Livechat = {
 
 			const datetime = moment(message.ts).locale(userLanguage).format('LLL');
 			const singleMessage = `
-				<p><strong>${ author }</strong>  <em>${ datetime }</em></p>
-				<p>${ message.msg }</p>
+				<p><strong>${ author}</strong>  <em>${datetime}</em></p>
+				<p>${ message.msg}</p>
 			`;
 			html += singleMessage;
 		});
 
-		html = `${ html }</div>`;
+		html = `${html}</div>`;
 
 		let fromEmail = settings.get('From_Email').match(/\b[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,4}\b/i);
 
@@ -886,13 +903,13 @@ export const Livechat = {
 			return false;
 		}
 
-		const message = `${ data.message }`.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2');
+		const message = `${data.message}`.replace(/([^>\r\n]?)(\r\n|\n\r|\r|\n)/g, '$1<br>$2');
 
 		const html = `
 			<h1>New livechat message</h1>
-			<p><strong>Visitor name:</strong> ${ data.name }</p>
-			<p><strong>Visitor email:</strong> ${ data.email }</p>
-			<p><strong>Message:</strong><br>${ message }</p>`;
+			<p><strong>Visitor name:</strong> ${ data.name}</p>
+			<p><strong>Visitor email:</strong> ${ data.email}</p>
+			<p><strong>Message:</strong><br>${ message}</p>`;
 
 		let fromEmail = settings.get('From_Email').match(/\b[A-Z0-9._%+-]+@(?:[A-Z0-9-]+\.)+[A-Z]{2,4}\b/i);
 
@@ -918,9 +935,9 @@ export const Livechat = {
 			emailTo = dep.email || emailTo;
 		}
 
-		const from = `${ data.name } - ${ data.email } <${ fromEmail }>`;
-		const replyTo = `${ data.name } <${ data.email }>`;
-		const subject = `Livechat offline message from ${ data.name }: ${ `${ data.message }`.substring(0, 20) }`;
+		const from = `${data.name} - ${data.email} <${fromEmail}>`;
+		const replyTo = `${data.name} <${data.email}>`;
+		const subject = `Livechat offline message from ${data.name}: ${`${data.message}`.substring(0, 20)}`;
 
 		this.sendEmail(from, emailTo, replyTo, subject, html);
 
@@ -963,7 +980,7 @@ Livechat.stream.allowRead((roomId, extraData) => {
 	const room = Rooms.findOneById(roomId);
 
 	if (!room) {
-		console.warn(`Invalid eventName: "${ roomId }"`);
+		console.warn(`Invalid eventName: "${roomId}"`);
 		return false;
 	}
 

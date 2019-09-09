@@ -21,6 +21,15 @@ TabBar.addButton({
 
 TabBar.addButton({
 	groups: ['live'],
+	id: 'ticket-info',
+	i18nTitle: 'Ticket_Info',
+	icon: 'info-circled',
+	template: 'ticketInfo',
+	order: 1,
+});
+
+TabBar.addButton({
+	groups: ['live'],
 	id: 'visitor-history',
 	i18nTitle: 'Past_Chats',
 	icon: 'chat',

@@ -14,6 +14,7 @@ import { CachedChatSubscription } from './models/CachedChatSubscription';
 import { CachedUserList } from './models/CachedUserList';
 import { ChatRoom } from './models/ChatRoom';
 import { ChatSubscription } from './models/ChatSubscription';
+import { ChatTicket } from './models/ChatTicket';
 import { ChatMessage } from './models/ChatMessage';
 import { RoomRoles } from './models/RoomRoles';
 import { UserAndRoom } from './models/UserAndRoom';
@@ -28,6 +29,7 @@ const Users = _.extend({}, users, Meteor.users);
 const Subscriptions = _.extend({}, subscriptions, ChatSubscription);
 const Messages = _.extend({}, ChatMessage);
 const Rooms = _.extend({}, ChatRoom);
+// const Tickets = _.extend({}, ChatTicket);
 
 export {
 	Base,
@@ -43,6 +45,7 @@ export {
 	CachedChatSubscription,
 	CachedUserList,
 	ChatRoom,
+	ChatTicket,
 	RoomRoles,
 	UserAndRoom,
 	UserRoles,
@@ -51,6 +54,7 @@ export {
 	ChatMessage,
 	ChatSubscription,
 	Rooms,
+	// Tickets,
 	CustomSounds,
 	CustomUserStatus,
 	EmojiCustom,

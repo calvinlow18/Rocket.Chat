@@ -26,7 +26,7 @@ Template.visitorForward.helpers({
 			status: { $ne: 'offline' },
 			statusLivechat: 'available',
 		};
-
+		console.log(AgentUsers.find().fetch());
 		return AgentUsers.find(query, { sort: { name: 1, username: 1 } });
 	},
 	agentName() {
@@ -34,7 +34,7 @@ Template.visitorForward.helpers({
 	},
 });
 
-Template.visitorForward.onCreated(function() {
+Template.visitorForward.onCreated(function () {
 	this.visitor = new ReactiveVar();
 	this.room = new ReactiveVar();
 
@@ -43,6 +43,7 @@ Template.visitorForward.onCreated(function() {
 	});
 
 	this.autorun(() => {
+		console.log(ChatRoom.find().fetch());
 		this.room.set(ChatRoom.findOne({ _id: Template.currentData().roomId }));
 	});
 

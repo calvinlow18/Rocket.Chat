@@ -19,6 +19,7 @@ import './methods/addManager';
 import './methods/changeLivechatStatus';
 import './methods/closeByVisitor';
 import './methods/closeRoom';
+import './methods/createTicket';
 import './methods/facebook';
 import './methods/getCustomFields';
 import './methods/getAgentData';

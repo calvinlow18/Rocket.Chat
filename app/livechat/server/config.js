@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { settings } from '../../settings';
 
-Meteor.startup(function() {
+Meteor.startup(function () {
 	settings.addGroup('Livechat');
 
 	settings.add('Livechat_enabled', false, { type: 'boolean', group: 'Livechat', public: true });
@@ -353,6 +353,48 @@ Meteor.startup(function() {
 		section: 'Facebook',
 		i18nDescription: 'If_you_dont_have_one_send_an_email_to_omni_rocketchat_to_get_yours',
 	});
+
+	settings.add('Livechat_Ticket_ZohoDesk_Enabled', false, {
+		type: 'boolean',
+		group: 'Livechat',
+		section: 'Zoho Desk',
+	});
+
+	settings.add('Livechat_Ticket_ZohoDesk_Api_Base_Url', 'https://desk.zoho.com/api/v1', {
+		type: 'string',
+		group: 'Livechat',
+		section: 'Zoho Desk',
+	});
+
+	settings.add('Livechat_Ticket_ZohoDesk_Org_Id', '', {
+		type: 'string',
+		group: 'Livechat',
+		section: 'Zoho Desk',
+	});
+
+	settings.add('Livechat_Ticket_ZohoDesk_Auth_Token', '', {
+		type: 'string',
+		group: 'Livechat',
+		section: 'Zoho Desk',
+	});
+
+	settings.add('Livechat_Ticket_ZohoDesk_Default_Department_Id', '', {
+		type: 'string',
+		group: 'Livechat',
+		section: 'Zoho Desk',
+	});
+
+	// settings.add('Livechat_Ticket_ZohoDesk_Client_Id', '', {
+	// 	type: 'string',
+	// 	group: 'Livechat',
+	// 	section: 'Zoho Desk',
+	// });
+
+	// settings.add('Livechat_Ticket_ZohoDesk_Client_Secret', '', {
+	// 	type: 'string',
+	// 	group: 'Livechat',
+	// 	section: 'Zoho Desk',
+	// });
 
 	settings.add('Livechat_RDStation_Token', '', {
 		type: 'string',

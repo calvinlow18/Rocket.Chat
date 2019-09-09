@@ -69,6 +69,7 @@ import './publications/channelAndPrivateAutocomplete';
 import './publications/fullUserData';
 import './publications/messages';
 import './publications/room';
+import './publications/tickets';
 import './publications/roomFiles';
 import './publications/roomFilesWithSearchText';
 import './publications/roomSubscriptionsByRole';

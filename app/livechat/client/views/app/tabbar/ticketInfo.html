@@ -1,0 +1,7 @@
+<template name="ticketInfo">
+	{{> ticketCreate (createDetails) }}
+	{{#if showTicketList}}
+		{{> ticketList (listDetails) }}
+	{{/if}}
+	
+</template>
