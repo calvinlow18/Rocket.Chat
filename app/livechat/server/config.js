@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { settings } from '../../settings';
 
-Meteor.startup(function () {
+Meteor.startup(function() {
 	settings.addGroup('Livechat');
 
 	settings.add('Livechat_enabled', false, { type: 'boolean', group: 'Livechat', public: true });

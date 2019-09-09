@@ -27,7 +27,7 @@ Template.livechatTicketIntegrationZohoDesk.helpers({
 	},
 });
 
-Template.livechatTicketIntegrationZohoDesk.onCreated(function () {
+Template.livechatTicketIntegrationZohoDesk.onCreated(function() {
 	this.enabled = new ReactiveVar(false);
 	this.hasToken = new ReactiveVar(false);
 	this.pages = new ReactiveVar([]);
@@ -85,7 +85,7 @@ Template.livechatTicketIntegrationZohoDesk.onCreated(function () {
 	};
 });
 
-Template.livechatTicketIntegrationZohoDesk.onRendered(function () {
+Template.livechatTicketIntegrationZohoDesk.onRendered(function() {
 	this.loading.set(true);
 	Meteor.call('livechat:facebook', { action: 'initialState' }, this.result((result) => {
 		this.enabled.set(result.enabled);

@@ -34,7 +34,7 @@ Template.visitorForward.helpers({
 	},
 });
 
-Template.visitorForward.onCreated(function () {
+Template.visitorForward.onCreated(function() {
 	this.visitor = new ReactiveVar();
 	this.room = new ReactiveVar();
 

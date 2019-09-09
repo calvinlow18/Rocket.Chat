@@ -14,7 +14,7 @@ Template.ticketCreate.helpers({
 	},
 });
 
-Template.ticketCreate.onCreated(function () {
+Template.ticketCreate.onCreated(function() {
 	this.room = new ReactiveVar();
 	this.ticket = new ReactiveVar({});
 

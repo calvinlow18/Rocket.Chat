@@ -1,11 +1,7 @@
-import { Meteor } from 'meteor/meteor';
 import { ReactiveVar } from 'meteor/reactive-var';
 import { Template } from 'meteor/templating';
-import { Mongo } from 'meteor/mongo';
-import toastr from 'toastr';
 
-import { ChatRoom, ChatTicket } from '../../../../../models';
-import { t } from '../../../../../utils';
+import { ChatTicket } from '../../../../../models';
 import './ticketList.html';
 
 // var tickets = new Mongo.Collection(null);
@@ -16,7 +12,7 @@ import './ticketList.html';
 Template.ticketList.helpers({
 	tickets() {
 		const rId = Template.currentData().roomId;
-		return ChatTicket.find({ rid: rId }, { sort: { _updatedAt: -1 } }).map(function (ticket) {
+		return ChatTicket.find({ rid: rId }, { sort: { _updatedAt: -1 } }).map(function(ticket) {
 			switch (ticket.ticketingSystem) {
 				case 'Zoho Desk':
 					ticket.backgroundColor = '#ED5B29';
@@ -30,7 +26,7 @@ Template.ticketList.helpers({
 	},
 });
 
-Template.ticketList.onCreated(function () {
+Template.ticketList.onCreated(function() {
 
 	this.tickets = new ReactiveVar([]);
 
